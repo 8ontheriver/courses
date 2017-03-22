@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Delete</title>
+	</head>
+	<body>
+		<h3>Are you sure you want to delete the following post?</h3>
+		{% for i in courses %}
+		<p>Name:  {{ i.course_name }}</p>
+		{% endfor %}
+		<br>
+		<p>Description:  </p>
+		<form name="no" action="/return">
+			{% csrf_token %}
+			<input type="submit" name="no" value="No">
+		</form>
+		{% for i in courses %}
+		<form name="delete" action="/confirmdelete/{{i.id}}" method="post">
+				
+			{% csrf_token %}
+			<input type="submit" name="yes" value="Yes, I want to delete!">
+		
+		</form>
+		{% endfor %}
+	</body>
+</html>
